@@ -314,7 +314,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 
 - (YYAnimatedImageType)currentImageType {
     YYAnimatedImageType curType = YYAnimatedImageTypeNone;
-    if (self.highlighted) {
+    if (self.isHighlighted) {
         if (self.highlightedAnimationImages.count) curType = YYAnimatedImageTypeHighlightedImages;
         else if (self.highlightedImage) curType = YYAnimatedImageTypeHighlightedImage;
     }

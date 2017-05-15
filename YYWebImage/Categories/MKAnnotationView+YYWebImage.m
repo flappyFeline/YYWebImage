@@ -106,7 +106,7 @@ static int _YYWebImageSetterKey;
     _yy_dispatch_sync_on_main_queue(^{
         if ((options & YYWebImageOptionSetImageWithFadeAnimation) &&
             !(options & YYWebImageOptionAvoidSetImage)) {
-            if (!self.highlighted) {
+            if (!self.isHighlighted) {
                 [self.layer removeAnimationForKey:_YYWebImageFadeAnimationKey];
             }
         }
@@ -150,7 +150,7 @@ static int _YYWebImageSetterKey;
             YYWebImageCompletionBlock _completion = ^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
                 __strong typeof(_self) self = _self;
                 BOOL setImage = (stage == YYWebImageStageFinished || stage == YYWebImageStageProgress) && image && !(options & YYWebImageOptionAvoidSetImage);
-                BOOL showFade = ((options & YYWebImageOptionSetImageWithFadeAnimation) && !self.highlighted);
+                BOOL showFade = ((options & YYWebImageOptionSetImageWithFadeAnimation) && !self.isHighlighted);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     BOOL sentinelChanged = weakSetter && weakSetter.sentinel != newSentinel;
                     if (setImage && self && !sentinelChanged) {
